@@ -62,12 +62,14 @@ with tab1:
 with tab2:
     st.subheader("Correlation Between Production and Prices")
     fig2, ax = plt.subplots(figsize=(8, 5))
-    sns.scatterplot(
+    sns.regplot(
         data=df_filtered,
         x="production",
         y=price_sector,
         ax=ax,
-        color="purple"
+        scatter_kws={"color": "purple", "alpha": 0.6},
+        line_kws={"color": "black"},
+        lowess=True 
     )
     ax.set_xlabel("Production (MWh)")
     ax.set_ylabel(f"{price_sector.replace('price_', '').capitalize()} Price (¢/kWh)")
